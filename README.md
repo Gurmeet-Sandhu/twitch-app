@@ -23,7 +23,7 @@ You need to have following programs installed on your local machine to run this 
 
 **Step1** Clone the Github repository
 ```
-git clone https://github.com/Gurmeet-Sandhu/weather-app.git
+git clone https://github.com/Gurmeet-Sandhu/twitch-app.git
 
 ```
 
