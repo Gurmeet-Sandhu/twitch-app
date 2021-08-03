@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import React, { useState } from 'react'
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
-function App() {
+import Searchbar from './components/Searchbar'
+import Items from './components/Items'
+import api from './Api'
+
+export default function App() {
+
+  const [items, setItems] = useState([])
+
+  const fetchData = async (text) => {
+
+    const channels = await api.get(`https://api.twitch.tv/helix/search/channels?query=${text}`)
+    const data = channels.data.data
+
+    setItems(data)
+    console.log(data)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Searchbar fetchData={fetchData} />
+
+        <Items items={items} />
+      
     </div>
   );
 }
-
-export default App;
